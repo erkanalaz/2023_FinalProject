@@ -9,9 +9,11 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            GetProductsByCatId();
+            GetAll();
 
-            GetCategoryById();
+            //GetProductDetails();
+
+            //GetCategoryById();
         }
 
         private static void GetCategoryById()
@@ -23,15 +25,45 @@ namespace ConsoleUI
             }
         }
 
-        private static void GetProductsByCatId()
+        private static void GetProductDetails()
         {
             ProductManager productManager = new ProductManager(new EfProductDal());
-            foreach (var item in productManager.GetProductDetails())
+
+            var result = productManager.GetProductDetails();
+
+            if (result.Success)
             {
-                Console.WriteLine(item.CategoryName+" / "+item.ProductName);
+                foreach (var item in result.Data)
+                {
+                    Console.WriteLine(item.CategoryName + " / " + item.ProductName);
+                }
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
             }
 
+
             Console.WriteLine("-----------------------------------------");
+        }
+
+
+        private static void GetAll()
+        {
+            ProductManager productManager=new ProductManager(new EfProductDal());
+
+            var result = productManager.GetAll();
+            if (result.Success)
+            {
+                foreach (var product in result.Data)
+                {
+                    Console.WriteLine(product.ProductName);   
+                }
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
         }
     }
 }
