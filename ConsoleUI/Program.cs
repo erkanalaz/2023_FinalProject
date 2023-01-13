@@ -9,61 +9,61 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            GetAll();
+           // GetAll();
 
             //GetProductDetails();
 
             //GetCategoryById();
         }
 
-        private static void GetCategoryById()
-        {
-            CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
-            foreach (var item in categoryManager.GetById(1))
-            {
-                Console.WriteLine(item.CategoryName);
-            }
-        }
+        //private static void GetCategoryById()
+        //{
+        //    CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
+        //    foreach (var item in categoryManager.GetById(1))
+        //    {
+        //        Console.WriteLine(item.CategoryName);
+        //    }
+        //}
 
-        private static void GetProductDetails()
-        {
-            ProductManager productManager = new ProductManager(new EfProductDal());
+        //private static void GetProductDetails()
+        //{
+        //    ProductManager productManager = new ProductManager(new EfProductDal());
 
-            var result = productManager.GetProductDetails();
+        //    var result = productManager.GetProductDetails();
 
-            if (result.Success)
-            {
-                foreach (var item in result.Data)
-                {
-                    Console.WriteLine(item.CategoryName + " / " + item.ProductName);
-                }
-            }
-            else
-            {
-                Console.WriteLine(result.Message);
-            }
-
-
-            Console.WriteLine("-----------------------------------------");
-        }
+        //    if (result.Success)
+        //    {
+        //        foreach (var item in result.Data)
+        //        {
+        //            Console.WriteLine(item.CategoryName + " / " + item.ProductName);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine(result.Message);
+        //    }
 
 
-        private static void GetAll()
-        {
-            ProductManager productManager=new ProductManager(new EfProductDal());
+        //    Console.WriteLine("-----------------------------------------");
+        //}
 
-            var result = productManager.GetAll();
-            if (result.Success)
-            {
-                foreach (var product in result.Data)
-                {
-                    Console.WriteLine(product.ProductName);   
-                }
-            }
-            else
-            {
-                Console.WriteLine(result.Message);
-            }
-        }
+
+        //private static void GetAll()
+        //{
+        //    ProductManager productManager=new ProductManager(new EfProductDal());
+
+        //    var result = productManager.GetAll();
+        //    if (result.Success)
+        //    {
+        //        foreach (var product in result.Data)
+        //        {
+        //            Console.WriteLine(product.ProductName);   
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine(result.Message);
+        //    }
+        //}
     }
 }
