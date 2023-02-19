@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core.Entities.Concrete;
+using Core.Utilities.Results;
+using Entities.Concrete;
+using User = Core.Entities.Concrete.User;
 
 namespace Business.Abstract
 {
@@ -12,5 +15,7 @@ namespace Business.Abstract
         List<OperationClaim> GetClaims(User user);
         void Add(User user);
         User GetByMail(string email);
+
+        List<User> GetAll();
     }
 }

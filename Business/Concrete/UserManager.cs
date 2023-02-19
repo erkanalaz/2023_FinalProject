@@ -5,7 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Business.Abstract;
 using Core.Entities.Concrete;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
+using Entities.Concrete;
+using User = Core.Entities.Concrete.User;
 
 namespace Business.Concrete
 {
@@ -31,6 +34,11 @@ namespace Business.Concrete
         public User GetByMail(string email)
         {
             return _userDal.Get(u => u.Email == email);
+        }
+
+        public List<User> GetAll()
+        {
+            return _userDal.GetAll();
         }
     }
 }

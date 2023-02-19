@@ -7,6 +7,7 @@ using Core.Entities.Concrete;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using User = Entities.Concrete.User;
 
 namespace DataAccess.Concrete.EntityFramework
 {

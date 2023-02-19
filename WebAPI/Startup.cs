@@ -24,6 +24,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
 
+
 namespace WebAPI
 {
     public class Startup
@@ -41,14 +42,14 @@ namespace WebAPI
 
             services.AddControllers();
 
-
+            services.AddCors();
 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
-                    options.TokenValidationParameters=new TokenValidationParameters
+                    options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuer = true,
                         ValidateAudience = true,
@@ -81,11 +82,15 @@ namespace WebAPI
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPI v1"));
             }
 
+            app.ConfigureCustomExceptionMiddleware();
+
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseAuthentication();////***** 
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
